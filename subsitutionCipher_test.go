@@ -97,6 +97,12 @@ func TestSubstitutionCipherEncryptWithAlphabet(t *testing.T) {
 	if encryptedMessage != "C5YYV nVSY6!" {
 		t.Errorf("The encrypted message should be \"C5YYV nVSY6!\" not %s.", encryptedMessage)
 	}
+	key = "abcdefghijklmnopqrstuvwxy"
+	message = "Hello World!"
+	_, err = SubstitutionCipherEncryptWithAlphabet(Alphabet, key, message)
+	if err == nil {
+		t.Errorf("The encrypt func should return an error.")
+	}
 }
 
 // TestSubstitutionCipherEncryptWA tests the SubstitutionCipherEncryptWA function.
@@ -172,5 +178,12 @@ func TestSubstitutionCipherDecryptWA(t *testing.T) {
 	}
 	if decryptedMessage != "Hello World!" {
 		t.Errorf("The decrypted message should be \"Hello World!\" not %s.", decryptedMessage)
+	}
+
+	key = "abcdefghijklmnopqrstuvwxy"
+	message = "Hello World!"
+	_, err = SubstitutionCipherDecryptWA(Alphabet, key, message)
+	if err == nil {
+		t.Errorf("The decrypt func should return an error.")
 	}
 }

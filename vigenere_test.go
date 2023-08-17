@@ -68,6 +68,15 @@ func TestNewKeyVigenereWithAlphabet(t *testing.T) {
 	if strings.Compare(Key.Alphabet, AlphabetMaj) != 0 {
 		t.Errorf("The alphabet should be %s not %s.", AlphabetMaj, Key.Alphabet)
 	}
+
+	_, err = NewKeyVigenereWithAlphabet(3, []int{1, -1, 3}, AlphabetMin)
+	if err == nil {
+		t.Errorf("The function should return an error.")
+	}
+	_, err = NewKeyVigenereWithAlphabet(3, []int{1, 30, 3}, AlphabetMin)
+	if err == nil {
+		t.Errorf("The function should return an error.")
+	}
 }
 
 // TestNewKeyVigenereRandomWithAlphabet tests the NewKeyVigenereRandomWithAlphabet function.
@@ -89,24 +98,32 @@ func TestNewKeyVigenereRandomWithAlphabet(t *testing.T) {
 	}
 }
 
+// TestKeyVigenereString tests the KeyVigenere.String function.
+func TestKeyVigenereString(t *testing.T) {
+	Key, _ := NewKeyVigenere(3, []int{1, 2, 3})
+	if strings.Compare(Key.String(), "KeyVigenere{LnBlock: 3, Decal: [1 2 3], Alphabet: "+Alphabet+"}") != 0 {
+		t.Errorf("The string should be \"KeyVigenere{LnBlock: 3, Decal: [1 2 3], Alphabet: %s}\" not \"%s\".", Alphabet, Key.String())
+	}
+}
+
 // TestVigenereEncrypt tests the VigenereEncrypt function.
 func TestVigenereEncrypt(t *testing.T) {
 	Key, _ := NewKeyVigenere(3, []int{1, 2, 3})
-	message := "Hello World!"
+	message := "Hello World!  "
 	encryptedMessage := VigenereEncrypt(Key, message)
 
-	if strings.Compare(encryptedMessage, "Igomq Xqumf!") != 0 {
-		t.Errorf("The encrypted message should be \"Igomq Xqumf!\" not \"%s\".", encryptedMessage)
+	if strings.Compare(encryptedMessage, "Igomq Xqumf!  ") != 0 {
+		t.Errorf("The encrypted message should be \"Igomq Xqumf!  \" not \"%s\".", encryptedMessage)
 	}
 }
 
 // TestVigenereDecrypt tests the VigenereDecrypt function.
 func TestVigenereDecrypt(t *testing.T) {
 	Key, _ := NewKeyVigenere(3, []int{1, 2, 3})
-	message := "Igomq Xqumf!"
+	message := "Igomq Xqumf!  "
 	decryptedMessage := VigenereDecrypt(Key, message)
 
-	if strings.Compare(decryptedMessage, "Hello World!") != 0 {
-		t.Errorf("The decrypted message should be \"Hello World!\" not \"%s\".", decryptedMessage)
+	if strings.Compare(decryptedMessage, "Hello World!  ") != 0 {
+		t.Errorf("The decrypted message should be \"Hello World!  \" not \"%s\".", decryptedMessage)
 	}
 }

@@ -1,6 +1,7 @@
 package crypt
 
-const alphabetMin = "abcdefghijklmnopqrstuvwxyz"
-const alphabetMaj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const alphabetNum = "0123456789"
-const alphatbet = alphabetMin + alphabetMaj + alphabetNum
+const AlphabetMin = "abcdefghijklmnopqrstuvwxyz"
+const AlphabetMaj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const AlphabetNum = "0123456789"
+const AlphabetWithOutNum = AlphabetMin + AlphabetMaj
+const Alphabet = AlphabetMin + AlphabetMaj + AlphabetNum

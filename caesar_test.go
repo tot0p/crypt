@@ -1,7 +1,7 @@
 package crypt
 
 import (
-	"fmt"
+	"strings"
 	"testing"
 )
 
@@ -42,17 +42,29 @@ func TestCaesarEncryptAndDecrypt(t *testing.T) {
 	if CaesarDecrypt(CaesarEncrypt("abc", 1), 1) != "abc" {
 		t.Error("CaesarDecrypt(CaesarEncrypt(\"abc\", 1), 1) != \"abc\"")
 	}
-	if !equal(CaesarDecrypt(CaesarEncrypt("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec semp", 20), 20), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec semp") {
+	if 0 != strings.Compare(CaesarDecrypt(CaesarEncrypt("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec semp", 20), 20), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec semp") {
 		t.Error("CaesarDecrypt(CaesarDecrypt(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec semp\",20),20) != \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec semp\"")
 	}
 }
 
-func equal(s, s1 string) bool {
-	for i := 0; i < len(s); i++ {
-		if s[i] != s1[i] {
-			fmt.Println(string(s[i]), string(s1[i]), i)
-			return false
-		}
+func TestCaesarEncryptWithAlphabet(t *testing.T) {
+	if CaesarEncryptWithAlphabet("abc1", 1, AlphabetMin) != "bcd1" {
+		t.Error("CaesarEncryptWithAlphabet(\"abc1\", 1, alphabet) != \"bcd1\"")
 	}
-	return true
+
+	if CaesarEncryptWithAlphabet("ABC1", 1, AlphabetMaj) != "BCD1" {
+		t.Error("CaesarEncryptWithAlphabet(\"ABC1\", 1, alphabet) != \"BCD1\"")
+	}
+}
+
+func TestCaesarDecryptWithAlphabet(t *testing.T) {
+
+	if CaesarDecryptWithAlphabet("bcd1", 1, AlphabetMin) != "abc1" {
+		t.Error("CaesarDecryptWithAlphabet(\"bcd1\", 1, alphabet) != \"abc1\"")
+	}
+
+	if CaesarDecryptWithAlphabet("BCD1", 1, AlphabetMaj) != "ABC1" {
+		t.Error("CaesarDecryptWithAlphabet(\"BCD1\", 1, alphabet) != \"ABC1\"")
+	}
+
 }

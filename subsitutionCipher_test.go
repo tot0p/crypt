@@ -61,8 +61,8 @@ func TestGenerateKeyForSCWA(t *testing.T) {
 	}
 }
 
-// TestSubstitutionCipherEncryptWithAlphabetWithKey tests the SubstitutionCipherEncryptWithAlphabetWithKey function.
-func TestSubstitutionCipherEncryptWithAlphabetWithKey(t *testing.T) {
+// TestSubstitutionCipherEncrypt tests the SubstitutionCipherEncrypt function.
+func TestSubstitutionCipherEncrypt(t *testing.T) {
 	key := func() string {
 		key := ""
 		for i := len(Alphabet) - 1; i >= 0; i-- {
@@ -71,7 +71,7 @@ func TestSubstitutionCipherEncryptWithAlphabetWithKey(t *testing.T) {
 		return key
 	}()
 	message := "Hello World!"
-	encryptedMessage, err := SubstitutionCipherEncryptWithAlphabetWithKey(Alphabet, key, message)
+	encryptedMessage, err := SubstitutionCipherEncrypt(key, message)
 	if err != nil {
 		t.Errorf("The encrypt func return an error : %s", err.Error())
 	}
@@ -80,8 +80,8 @@ func TestSubstitutionCipherEncryptWithAlphabetWithKey(t *testing.T) {
 	}
 }
 
-// TestSubstitutionCipherEncryptWAWK tests the SubstitutionCipherEncryptWAWK function.
-func TestSubstitutionCipherEncryptWAWK(t *testing.T) {
+// TestSubstitutionCipherEncryptWithAlphabet tests the SubstitutionCipherEncryptWithAlphabet function.
+func TestSubstitutionCipherEncryptWithAlphabet(t *testing.T) {
 	key := func() string {
 		key := ""
 		for i := len(Alphabet) - 1; i >= 0; i-- {
@@ -90,7 +90,7 @@ func TestSubstitutionCipherEncryptWAWK(t *testing.T) {
 		return key
 	}()
 	message := "Hello World!"
-	encryptedMessage, err := SubstitutionCipherEncryptWAWK(Alphabet, key, message)
+	encryptedMessage, err := SubstitutionCipherEncryptWithAlphabet(Alphabet, key, message)
 	if err != nil {
 		t.Errorf("The encrypt func return an error : %s", err.Error())
 	}
@@ -99,8 +99,27 @@ func TestSubstitutionCipherEncryptWAWK(t *testing.T) {
 	}
 }
 
-// TestSubstitutionCipherDecryptWithAlphabetWithKey tests the SubstitutionCipherDecryptWithAlphabetWithKey function.
-func TestSubstitutionCipherDecryptWithAlphabetWithKey(t *testing.T) {
+// TestSubstitutionCipherEncryptWA tests the SubstitutionCipherEncryptWA function.
+func TestSubstitutionCipherEncryptWA(t *testing.T) {
+	key := func() string {
+		key := ""
+		for i := len(Alphabet) - 1; i >= 0; i-- {
+			key += string(Alphabet[i])
+		}
+		return key
+	}()
+	message := "Hello World!"
+	encryptedMessage, err := SubstitutionCipherEncryptWA(Alphabet, key, message)
+	if err != nil {
+		t.Errorf("The encrypt func return an error : %s", err.Error())
+	}
+	if encryptedMessage != "C5YYV nVSY6!" {
+		t.Errorf("The encrypted message should be \"C5YYV nVSY6!\" not %s.", encryptedMessage)
+	}
+}
+
+// TestSubstitutionCipherDecrypt tests the SubstitutionCipherDecrypt function.
+func TestSubstitutionCipherDecrypt(t *testing.T) {
 	key := func() string {
 		key := ""
 		for i := len(Alphabet) - 1; i >= 0; i-- {
@@ -109,7 +128,7 @@ func TestSubstitutionCipherDecryptWithAlphabetWithKey(t *testing.T) {
 		return key
 	}()
 	message := "C5YYV nVSY6!"
-	decryptedMessage, err := SubstitutionCipherDecryptWithAlphabetWithKey(Alphabet, key, message)
+	decryptedMessage, err := SubstitutionCipherDecrypt(key, message)
 	if err != nil {
 		t.Errorf("The decrypt func return an error : %s", err.Error())
 	}
@@ -118,8 +137,8 @@ func TestSubstitutionCipherDecryptWithAlphabetWithKey(t *testing.T) {
 	}
 }
 
-// TestSubstitutionCipherDecryptWAWK tests the SubstitutionCipherDecryptWAWK function.
-func TestSubstitutionCipherDecryptWAWK(t *testing.T) {
+// TestSubstitutionCipherDecryptWithAlphabet tests the SubstitutionCipherDecryptWithAlphabet function.
+func TestSubstitutionCipherDecryptWithAlphabet(t *testing.T) {
 	key := func() string {
 		key := ""
 		for i := len(Alphabet) - 1; i >= 0; i-- {
@@ -128,7 +147,26 @@ func TestSubstitutionCipherDecryptWAWK(t *testing.T) {
 		return key
 	}()
 	message := "C5YYV nVSY6!"
-	decryptedMessage, err := SubstitutionCipherDecryptWAWK(Alphabet, key, message)
+	decryptedMessage, err := SubstitutionCipherDecryptWithAlphabet(Alphabet, key, message)
+	if err != nil {
+		t.Errorf("The decrypt func return an error : %s", err.Error())
+	}
+	if decryptedMessage != "Hello World!" {
+		t.Errorf("The decrypted message should be \"Hello World!\" not %s.", decryptedMessage)
+	}
+}
+
+// TestSubstitutionCipherDecryptWA tests the SubstitutionCipherDecryptWA function.
+func TestSubstitutionCipherDecryptWA(t *testing.T) {
+	key := func() string {
+		key := ""
+		for i := len(Alphabet) - 1; i >= 0; i-- {
+			key += string(Alphabet[i])
+		}
+		return key
+	}()
+	message := "C5YYV nVSY6!"
+	decryptedMessage, err := SubstitutionCipherDecryptWA(Alphabet, key, message)
 	if err != nil {
 		t.Errorf("The decrypt func return an error : %s", err.Error())
 	}

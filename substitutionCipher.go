@@ -31,11 +31,18 @@ func GenerateKeyForSCWA(alphabet string) string {
 	return GenerateKeyForSubstitutionCipherWithAlphabet(alphabet)
 }
 
-// SubstitutionCipherEncryptWithAlphabetWithKey encrypts a message with the substitution cipher.
+// SubstitutionCipherEncrypt encrypts a message with the substitution cipher. (with Alphabet)
+// The key is the key to use.
+// The message is the message to encrypt
+func SubstitutionCipherEncrypt(key, message string) (string, error) {
+	return SubstitutionCipherEncryptWA(Alphabet, key, message)
+}
+
+// SubstitutionCipherEncryptWithAlphabet encrypts a message with the substitution cipher.
 // The alphabet is the alphabet to use.
 // The key is the key to use.
 // The message is the message to encrypt.
-func SubstitutionCipherEncryptWithAlphabetWithKey(alphabet, key, message string) (string, error) {
+func SubstitutionCipherEncryptWithAlphabet(alphabet, key, message string) (string, error) {
 	if len(alphabet) != len(key) {
 		return "", errors.New("the alphabet and the key should be the same length")
 	}
@@ -51,16 +58,23 @@ func SubstitutionCipherEncryptWithAlphabetWithKey(alphabet, key, message string)
 	return result, nil
 }
 
-// SubstitutionCipherEncryptWAWK is an alias for SubstitutionCipherEncryptWithAlphabetWithKey.
-func SubstitutionCipherEncryptWAWK(alphabet, key, message string) (string, error) {
-	return SubstitutionCipherEncryptWithAlphabetWithKey(alphabet, key, message)
+// SubstitutionCipherEncryptWA is an alias for SubstitutionCipherEncryptWithAlphabetWithKey.
+func SubstitutionCipherEncryptWA(alphabet, key, message string) (string, error) {
+	return SubstitutionCipherEncryptWithAlphabet(alphabet, key, message)
 }
 
-// SubstitutionCipherDecryptWithAlphabetWithKey decrypts a message with the substitution cipher.
+// SubstitutionCipherDecrypt decrypts a message with the substitution cipher. (with Alphabet)
+// The key is the key to use.
+// The message is the message to decrypt
+func SubstitutionCipherDecrypt(key, message string) (string, error) {
+	return SubstitutionCipherDecryptWA(Alphabet, key, message)
+}
+
+// SubstitutionCipherDecryptWithAlphabet decrypts a message with the substitution cipher.
 // The alphabet is the alphabet to use.
 // The key is the key to use.
 // The message is the message to decrypt.
-func SubstitutionCipherDecryptWithAlphabetWithKey(alphabet, key, message string) (string, error) {
+func SubstitutionCipherDecryptWithAlphabet(alphabet, key, message string) (string, error) {
 	if len(alphabet) != len(key) {
 		return "", errors.New("the alphabet and the key should be the same length")
 	}
@@ -76,7 +90,7 @@ func SubstitutionCipherDecryptWithAlphabetWithKey(alphabet, key, message string)
 	return result, nil
 }
 
-// SubstitutionCipherDecryptWAWK is an alias for SubstitutionCipherDecryptWithAlphabetWithKey.
-func SubstitutionCipherDecryptWAWK(alphabet, key, message string) (string, error) {
-	return SubstitutionCipherDecryptWithAlphabetWithKey(alphabet, key, message)
+// SubstitutionCipherDecryptWA is an alias for SubstitutionCipherDecryptWithAlphabetWithKey.
+func SubstitutionCipherDecryptWA(alphabet, key, message string) (string, error) {
+	return SubstitutionCipherDecryptWithAlphabet(alphabet, key, message)
 }

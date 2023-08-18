@@ -1,0 +1,20 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  unix:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      run: go test -v ./...
+
+    - if: github.event_name == 'push'
+      name: Update coverage badge
+      uses: ncruces/go-coverage-report@v0

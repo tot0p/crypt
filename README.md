@@ -4,7 +4,6 @@
 ![](https://img.shields.io/github/last-commit/tot0p/crypt)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tot0p/crypt)](https://goreportcard.com/report/github.com/tot0p/crypt)
 [![GoDoc](https://godoc.org/github.com/tot0p/crypt?status.svg)](https://godoc.org/github.com/tot0p/crypt)
-[![Go Coverage](https://github.com/tot0p/crypt/wiki/coverage.svg)](https://raw.githack.com/wiki/tot0p/crypt/coverage.html)
 
 ## Description
 

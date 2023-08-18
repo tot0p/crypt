@@ -34,7 +34,7 @@ func TestAlbertiCipher_Encrypt(t *testing.T) {
 	if encryptedMessage != "USQ MK" {
 		t.Errorf("The encrypted message should be \"USQ MK\" not %s.", encryptedMessage)
 	}
-	encryptedMessage, err = ac.Encrypt("ABCH")
+	_, err = ac.Encrypt("ABCH")
 	if err == nil {
 		t.Errorf("The encrypt func should return an error.")
 	}

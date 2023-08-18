@@ -18,3 +18,7 @@ jobs:
     - if: github.event_name == 'push'
       name: Update coverage badge
       uses: ncruces/go-coverage-report@v0
+      with:
+        report: 'true'
+        chart: 'true'
+        amend: 'false'
